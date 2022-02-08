@@ -1,6 +1,7 @@
 package io.stakenet.orderbook.lnd
 
 import java.io.File
+import java.io.FileInputStream
 
 import io.grpc.ManagedChannel
 import io.grpc.netty.shaded.io.grpc.netty.{GrpcSslContexts, NettyChannelBuilder}
@@ -90,7 +91,7 @@ class LightningClientBuilder @Inject() (configBuilder: LightningConfigBuilder) {
   }
 
   private def gRPCSSLContext(filename: String): SslContext = {
-    val trustedServerCertificate = new FileOutputStream(filename)
+    val trustedServerCertificate = new FileInputStream(filename)
     GrpcSslContexts
       .forClient()
       .trustManager(trustedServerCertificate)
