@@ -98,12 +98,7 @@ class LightningClientBuilder @Inject() (configBuilder: LightningConfigBuilder) {
   }
 
   private def macaroonInterceptor(macaroonPath: String): MacaroonClientInterceptor = {
-    logger.info(macaroonUrl)
-    val macFile = getClass.getResource(macaroonPath)
-    logger.info(macFile)
-    val macaroonUrl = macFile.getPath
-    logger.info(macaroonUrl)
-    val macaroonFile = new File(macaroonUrl)
+    val macaroonFile = new File(macaroonPath)
     val macaroonContext = new StaticFileMacaroonContext(macaroonFile)
     new MacaroonClientInterceptor(macaroonContext)
   }
