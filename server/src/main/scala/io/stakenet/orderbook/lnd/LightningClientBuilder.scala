@@ -11,10 +11,12 @@ import lnrpc.rpc.LightningGrpc
 import org.lightningj.lnd.wrapper.{MacaroonClientInterceptor, StaticFileMacaroonContext}
 import verrpc.verrpc.VersionerGrpc
 import routerrpc.router.RouterGrpc
+import org.slf4j.LoggerFactory
 
 class LightningClientBuilder @Inject() (configBuilder: LightningConfigBuilder) {
   
   private var cache: Map[Currency, LightningGrpc.Lightning] = Map.empty
+  private val logger = LoggerFactory.getLogger(this.getClass)
 
   def getLnd(currency: Currency): LightningGrpc.Lightning = this.synchronized {
     val client = cache.getOrElse(currency, buildLndClient(currency))
@@ -96,7 +98,10 @@ class LightningClientBuilder @Inject() (configBuilder: LightningConfigBuilder) {
   }
 
   private def macaroonInterceptor(macaroonPath: String): MacaroonClientInterceptor = {
+   
+    logger.info(s"trying to load macaroon config from ${macaroonPath}")
     val macaroonFile = new File(macaroonPath)
+    logger.info(s"macaroon config exists:  ${macaroonFile.exists}")
     val macaroonContext = new StaticFileMacaroonContext(macaroonFile)
     new MacaroonClientInterceptor(macaroonContext)
   }
