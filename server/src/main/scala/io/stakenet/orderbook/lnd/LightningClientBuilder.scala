@@ -11,11 +11,9 @@ import lnrpc.rpc.LightningGrpc
 import org.lightningj.lnd.wrapper.{MacaroonClientInterceptor, StaticFileMacaroonContext}
 import verrpc.verrpc.VersionerGrpc
 import routerrpc.router.RouterGrpc
-import org.slf4j.LoggerFactory
 
 class LightningClientBuilder @Inject() (configBuilder: LightningConfigBuilder) {
   
-  private val logger = LoggerFactory.getLogger(this.getClass)
   private var cache: Map[Currency, LightningGrpc.Lightning] = Map.empty
 
   def getLnd(currency: Currency): LightningGrpc.Lightning = this.synchronized {
