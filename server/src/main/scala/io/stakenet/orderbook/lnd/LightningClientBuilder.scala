@@ -90,7 +90,7 @@ class LightningClientBuilder @Inject() (configBuilder: LightningConfigBuilder) {
   }
 
   private def gRPCSSLContext(filename: String): SslContext = {
-    val trustedServerCertificate = getClass.getResourceAsStream(filename)
+    val trustedServerCertificate = new FileOutputStream(filename)
     GrpcSslContexts
       .forClient()
       .trustManager(trustedServerCertificate)
