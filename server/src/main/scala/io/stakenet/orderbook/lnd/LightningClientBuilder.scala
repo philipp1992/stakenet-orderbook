@@ -68,7 +68,6 @@ class LightningClientBuilder @Inject() (configBuilder: LightningConfigBuilder) {
   private def buildLndClient(currency: Currency): LightningGrpc.Lightning = {
     val lndConfig = configBuilder.getConfig(currency)
     val sslContext = gRPCSSLContext(lndConfig.tlsCertificateFile)
-    logger.info(lndConfig.macaroonFile)
     val macaroonClientInterceptor: MacaroonClientInterceptor = macaroonInterceptor(lndConfig.macaroonFile)
     val channel = managedChannel(sslContext, lndConfig.host, lndConfig.port, macaroonClientInterceptor)
     lightningStub(channel)
@@ -99,8 +98,8 @@ class LightningClientBuilder @Inject() (configBuilder: LightningConfigBuilder) {
   }
 
   private def macaroonInterceptor(macaroonPath: String): MacaroonClientInterceptor = {
-    logger.info(macaroonPath)
     val macaroonUrl = getClass.getResource(macaroonPath).getPath
+    logger.info(macaroonUrl)
     val macaroonFile = new File(macaroonUrl)
     val macaroonContext = new StaticFileMacaroonContext(macaroonFile)
     new MacaroonClientInterceptor(macaroonContext)
