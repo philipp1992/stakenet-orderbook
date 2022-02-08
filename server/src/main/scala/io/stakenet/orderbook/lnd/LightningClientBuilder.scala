@@ -11,9 +11,11 @@ import lnrpc.rpc.LightningGrpc
 import org.lightningj.lnd.wrapper.{MacaroonClientInterceptor, StaticFileMacaroonContext}
 import verrpc.verrpc.VersionerGrpc
 import routerrpc.router.RouterGrpc
+import org.slf4j.LoggerFactory
 
 class LightningClientBuilder @Inject() (configBuilder: LightningConfigBuilder) {
-
+  
+  private val logger = LoggerFactory.getLogger(this.getClass)
   private var cache: Map[Currency, LightningGrpc.Lightning] = Map.empty
 
   def getLnd(currency: Currency): LightningGrpc.Lightning = this.synchronized {
@@ -66,6 +68,7 @@ class LightningClientBuilder @Inject() (configBuilder: LightningConfigBuilder) {
   private def buildLndClient(currency: Currency): LightningGrpc.Lightning = {
     val lndConfig = configBuilder.getConfig(currency)
     val sslContext = gRPCSSLContext(lndConfig.tlsCertificateFile)
+    logger.info(lndConfig.macaroonFile)
     val macaroonClientInterceptor: MacaroonClientInterceptor = macaroonInterceptor(lndConfig.macaroonFile)
     val channel = managedChannel(sslContext, lndConfig.host, lndConfig.port, macaroonClientInterceptor)
     lightningStub(channel)
@@ -96,6 +99,7 @@ class LightningClientBuilder @Inject() (configBuilder: LightningConfigBuilder) {
   }
 
   private def macaroonInterceptor(macaroonPath: String): MacaroonClientInterceptor = {
+    logger.info(macaroonPath)
     val macaroonUrl = getClass.getResource(macaroonPath).getPath
     val macaroonFile = new File(macaroonUrl)
     val macaroonContext = new StaticFileMacaroonContext(macaroonFile)
