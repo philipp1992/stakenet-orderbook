@@ -24,7 +24,10 @@ jobs:
         run: cd server && sbt scalafmtCheck
 
       - name: Compile
-        run: cd server && sbt compile
-
-      - name: Run tests
-        run: cd server && sbt test
+        run: cd server && sbt compile && pwd && ls
+      
+      - name: Upload release
+        uses: actions/upload-artifact@v2
+        with:
+          name: orderbook
+          path: ./*
