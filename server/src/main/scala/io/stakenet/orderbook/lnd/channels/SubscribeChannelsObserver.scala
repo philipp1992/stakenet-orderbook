@@ -33,6 +33,7 @@ class SubscribeChannelsObserver(
   override def onNext(value: ChannelEventUpdate): Unit = value.channel match {
     case ChannelEventUpdate.Channel.Empty => logger.info(s"An empty value received from ${currency.entryName} lnd")
     case ChannelEventUpdate.Channel.OpenChannel(channel) => {
+      logger.info(s"new open channel event, remotePubkey = ${channel.remotePubkey}")
       val outpoint = LndOutpoint
         .untrusted(channel.channelPoint)
         .getOrElse(throw new RuntimeException("An invalid outpoint was received from lnd"))
