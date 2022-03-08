@@ -100,7 +100,7 @@ class MulticurrencyLndDefaultImpl @Inject() (clientBuilder: LightningClientBuild
       .withMemo(memo)
       .withValue(amount.valueFor(currency).longValue)
       .withExpiry(7200)
-      .withCltvExpiry(18)
+      .withCltvExpiry(120)
 
     clientBuilder
       .getLnd(currency)
