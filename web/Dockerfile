@@ -1,4 +1,4 @@
-FROM node:latest AS builder
+FROM node:12 AS builder
 COPY ./ ./
 
 
