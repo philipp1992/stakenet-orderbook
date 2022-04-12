@@ -1,34 +1,34 @@
-name: Build the server app
+# name: Build the server app
 
-on:
-  workflow_dispatch:
-  push:
-    branches: [ master ]
-    paths: ['server/**']
-  pull_request:
-    branches: [ master ]
-    paths: ['server/**']
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches: [ master ]
+#     paths: ['server/**']
+#   pull_request:
+#     branches: [ master ]
+#     paths: ['server/**']
 
-jobs:
-  build:
+# jobs:
+#   build:
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
+#     steps:
+#       - name: checkout
+#         uses: actions/checkout@v2
 
-      - name: Setup Scala
-        uses: japgolly/setup-everything-scala@v1.0
+#       - name: Setup Scala
+#         uses: japgolly/setup-everything-scala@v1.0
 
-      - name: Check code format
-        run: cd server && sbt scalafmtCheck
+#       - name: Check code format
+#         run: cd server && sbt scalafmtCheck
 
-      - name: Compile
-        run: cd server && sbt compile && sbt dist
+#       - name: Compile
+#         run: cd server && sbt compile && sbt dist
       
-      - name: Upload release
-        uses: actions/upload-artifact@v2
-        with:
-          name: orderbook
-          path: server/target/universal/*
+#       - name: Upload release
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: orderbook
+#           path: server/target/universal/*
