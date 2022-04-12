@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  SERVER_URL: 'wss://stg-orderbook.stakenet.io/api/ws',
-  API_URL: 'https://stg-orderbook.stakenet.io/api',
+  SERVER_URL: 'wss://orderbook.testnet.hub.hydranet.ai/api/ws',
+  API_URL: 'https://orderbook.testnet.hub.hydranet.ai/api',
   EXPLORER_URL: 'https://xsnexplorer.io/api'
 };

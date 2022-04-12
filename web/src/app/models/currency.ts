@@ -3,7 +3,8 @@ export class Currency {
     static readonly BTC = new Currency('BTC', 'assets/monitor/icon-btc_tp.svg');
     static readonly XSN = new Currency('XSN', 'assets/monitor/icon-xsn_tp.svg');
     static readonly USDT = new Currency('USDT', 'assets/monitor/icon-usdt_tp.svg');
-    static readonly values = [Currency.XSN, Currency.BTC, Currency.LTC, Currency.USDT];
+    static readonly USDC = new Currency('USDC', 'assets/monitor/icon-usdc_tp.svg');
+    static readonly values = [Currency.XSN, Currency.BTC, Currency.LTC, Currency.USDT, Currency.USDC];
 
     private constructor(public name: string, public urlIcon: string) { }
     toString() { return this.name; }

@@ -1,4 +1,4 @@
-export const TRADING_PAIRS = ['XSN_BTC', 'LTC_BTC'];
+export const TRADING_PAIRS = ['ETH_BTC', 'LTC_BTC', "BTC_USDT", "BTC_USDC"];
 export const SATOSHIS_SCALE = 100000000;
 export const BURNED_ADDRESS = 'XmPe9BHRsmZeThtYF34YYjdnrjmcAUn8bC';
 export const VOLUME_PERIODS = {

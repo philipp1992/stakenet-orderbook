@@ -9,7 +9,6 @@ const routes: Routes = [
   { path: ':market', component: HomeComponent },
   { path: 'graph/:market', component: TvChartContainerComponent },
   { path: 'monitor/:market', component: MonitorComponent },
-  { path: '**', redirectTo: 'XSN_BTC' },
 ];
 
 @NgModule({

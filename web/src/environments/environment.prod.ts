@@ -1,6 +1,6 @@
 export const environment = {
-  production: true,
-  SERVER_URL: 'wss://orderbook.stakenet.io/api/ws',
-  API_URL: 'https://orderbook.stakenet.io/api',
+  production: false,
+  SERVER_URL: 'wss://orderbook.xsntesthubphil.ml/api/ws',
+  API_URL: 'https://orderbook.xsntesthubphil.ml/api',
   EXPLORER_URL: 'https://xsnexplorer.io/api'
 };

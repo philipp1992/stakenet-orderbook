@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  SERVER_URL: 'ws://localhost:9000/ws',
-  API_URL: 'http://localhost:9000',
+  SERVER_URL: 'wss://orderbook.xsntesthubphil.ml/api/ws',
+  API_URL: 'https://orderbook.xsntesthubphil.ml/api',
   EXPLORER_URL: 'https://xsnexplorer.io/api'
 };
 
