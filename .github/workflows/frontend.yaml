@@ -26,7 +26,7 @@ jobs:
       - name: Build and push orderbook
         uses: docker/build-push-action@v2
         with:
-          context: web/images
+          context: web/
           push: true
           tags: muellerp92/orderbook-frontend:latest
 
