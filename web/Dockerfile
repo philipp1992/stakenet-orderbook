@@ -1,5 +1,9 @@
 FROM node:12 AS builder
-COPY ./ ./
+COPY ./ /web
+WORKDIR /web
+RUN npm --version
+RUN ls -ltra
+
 
 
 RUN npm install
