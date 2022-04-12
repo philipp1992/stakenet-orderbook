@@ -3,7 +3,7 @@ set -e;
 mkdir -p protos
 mkdir -p src/app/models/protos
 
-cp ../server/src/main/protobuf/stakenet/orderbook/* protos/
+#cp ../server/src/main/protobuf/stakenet/orderbook/* protos/
 sed -i '3s/.*/import "commands.proto";/' protos/api.proto
 sed -i '4s/.*/import "events.proto";/' protos/api.proto
 sed -i '3s/.*/import "models.proto";/' protos/commands.proto
