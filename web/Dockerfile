@@ -1,5 +1,5 @@
 FROM node:latest AS builder
-COPY ../src /src
+COPY ./ ./
 WORKDIR /src
 
 RUN npm install
